@@ -4,15 +4,17 @@ import json
 df = pd.read_csv("vocabulary.csv")
 
 
-#url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + df["word"][1000]
+#url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + "dog"
 
 #response = requests.request("GET", url)
 
-#test = json.loads(response.text)
-df_shuffled=df.sample(frac=1).reset_index(drop=True)
-df_shuffled.to_csv('output.csv')
-print(df_shuffled)
-"""
+#data = json.loads(response.text)
+
+
+#df_shuffled=df.sample(frac=1).reset_index(drop=True)
+#df_shuffled.to_csv('output.csv')
+#print(df_shuffled)
+
 
 # Opening JSON file
 f = open('example.json')
@@ -21,19 +23,33 @@ f = open('example.json')
 # a dictionary
 data = json.load(f)
 
-# for in definitions and exemples
-for i in range(0, len(data['meanings'][0]['definitions'])):
+"""
+
+# all definitions len(data['meanings'][0]['definitions'])
+for i in range(0, 2):
   if data['meanings'][0]['definitions'][i]['definition']:
     print(data['meanings'][0]['definitions'][i]['definition'])
 
+# mp3 pthonetcs audio
 for i in data['phonetics']:
   print(i["audio"])
-  
-t = data['meanings'][0]['definitions'][0]
-for i in json.loads(t).iteritems():
 
-  print(t)
+# synonymous
+print(data['meanings'][0]['synonyms'])
+
+"""
+
+
+# examples
+for i in data['meanings']:
+    for j in i['definitions']:
+      if len(j) > 3:
+        print("Definition: "+j['definition'])
+        print("Example: "+j['example'])
+        print("\n")
+    print(i['synonyms'])
 
 # Closing file
 f.close()
-"""
+
+
