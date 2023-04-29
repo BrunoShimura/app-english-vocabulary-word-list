@@ -18,7 +18,7 @@ df = pd.read_csv("vocabulary.csv")
 
 errors = []
 
-for w in range(94, len(df)):
+for w in range(0, len(df)):
   try:
     url = "https://api.dictionaryapi.dev/api/v2/entries/en/" + df["word"][w]
     response = requests.request("GET", url)
@@ -49,7 +49,7 @@ for w in range(94, len(df)):
       "word": df["word"][w],
       "definitions": all_definitions,
       "examples": all_examples,
-      "synonyms": all_synonyms,
+      "synonyms": all_synonyms,   
       "audio": all_audio,
     }
     print(w)
@@ -57,3 +57,6 @@ for w in range(94, len(df)):
     write_json(y)
   except:
     errors.append(w)
+print(errors)
+
+# [94, 152, 175, 334, 487, 528, 567, 825, 971, 1148, 1347, 1479, 1644, 1678, 1748, 2202, 2330, 2536, 2612, 2772, 2798, 3002, 3020, 3161, 3293, 3309, 3343, 3399, 3627, 3702, 3787, 3949, 3967, 4558, 4651, 4666, 4807, 4835, 4891, 4950]
